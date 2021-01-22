@@ -51,16 +51,48 @@ def update():
   dy1=dy
   for i in a:
       x_coord = coords(obj4)[0]
+      y_coord = coords(obj4)[1]
       if x_coord <= 0:
-        if dx < 0: dx1 = 0
-        elif dx >= 0: dx1 = dx; dy1 = dy
-        moveObjectBy(i, dx1, dy1)
+        if 5 < y_coord < 619:
+          if dx < 0: dx1 = 0
+          elif dx >= 0: dx1 = dx; dy1 = dy
+
+        elif y_coord <= 5:
+          if dx < 0 or dy < 0: dx1 = 0; dy1 = 0
+          elif dy > 0: dx1 = 0; dy1 = dy
+          elif dx > 0: dx1 = dx; dy1 = 0
+
+        elif y_coord >= 619:
+          if dx < 0 or dy > 0: dx1 = 0; dy1 = 0
+          elif dy < 0: dx1 = 0; dy1 = dy
+          elif dx > 0: dx1 = dx; dy1 = 0
+
       elif x_coord >= 650:
-        if dx > 0: dx1 = 0
-        elif dx <= 0: dx1 = dx; dy1 = dy
-        moveObjectBy(i, dx1, dy1)
+        if 5 < y_coord < 619:
+          if dx > 0: dx1 = 0
+          elif dx <= 0: dx1 = dx; dy1 = dy
+
+        elif y_coord <= 5:
+          if dx > 0 or dy < 0: dx1 = 0; dy1 = 0
+          elif dy > 0: dx1 = 0; dy1 = dy
+          elif dx < 0: dx1 = dx; dy1 = 0
+
+        elif y_coord >= 619:
+          if dx > 0 or dy > 0: dx1 = 0; dy1 = 0
+          elif dy < 0: dx1 = 0; dy1 = dy
+          elif dx < 0: dx1 = dx; dy1 = 0
+
+      elif 0 < x_coord < 650 and y_coord <= 5:
+        if dy < 0: dy1 = 0
+        elif dy > 0: dx1 = dx; dy1 = dy
+
+      elif 0 < x_coord < 650 and y_coord >= 619:
+        if dy > 0: dy1 = 0
+        elif dy < 0: dx1 = dx; dy1 = dy
+
       else:
         moveObjectBy(i, dx, dy)
+      moveObjectBy(i, dx1, dy1)
  
     
 dx = 0;  dy = 0
